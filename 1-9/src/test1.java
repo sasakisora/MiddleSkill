@@ -12,7 +12,12 @@ public class test1 {
         	System.out.println(kaneko*2);
                 
 //                3.boolean型の変数の値に不正な文字列比較を入れてfalseを出力してください。        
-        	boolean b = true;
-        	System.out.println("b=" + b);
+        	String str1 = "true";
+    		String str2 = "false";
+    		
+    		boolean boo1 = Boolean.valueOf( str1 );
+    		boolean boo2 = Boolean.valueOf( str2 );
+    		
+    		System.out.println(boo1==(boo2));
         }
 }
