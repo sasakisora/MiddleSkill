@@ -31,6 +31,10 @@ public class test1 {
 		//改行
 		System.out.println("問２");
 		//問題2:問1と同じ内容で三項演算子で条件式を作成しなさい。最後に変数aを出力する。
-		String a = "";
+		String a = (x < 0 && y < 0 && z < 0) ? (x % 10 !=0) ? 
+				"正の整数：NG" : "10の倍数：NG"
+	                : (x + y + z != 100) ? 
+	                "プラス100：NG" : "プラス100：OK";
+	        System.out.println(a);
 	}
 }
