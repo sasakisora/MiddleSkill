@@ -46,10 +46,10 @@ System.out.println(intresult);
 //※※必ず全パターン正常動作することをコンソールで確認して下さい。
 int nume = 4;
 int numf = -3;
-String results = (nume > 0) ? (numf >0) ? 
-		"both positive" : "one positive" 
-                : (numf >0) ? 
-                "one positive" : "etc";
+String results = (nume > 0) ? (numf < 0) ? 
+		"one positive" : "both positive" 
+                : (numf >0 && nume > 0) ? 
+                "both negative" : "etc";
         System.out.println(results);
 	}
 }
