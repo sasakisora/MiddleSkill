@@ -1,0 +1,95 @@
+⚫️課題1−14
+① アクセス修飾子とは何ですか？
+アクセスの制限をコントロールするもの
+
+② アクセス修飾子でアクセスレベルが上から２番目のものは何ですか？
+
+　
+③ Privateアクセス修飾子はどのような場面で利用しますか？例をあげなさい
+不用意に外部からのアクセスを許さず、かつ外部からは決められたメソッドからのみアクセスさせたい場合
+
+④Publicアクセス修飾子はどのような場面で利用しますか？例をあげなさい
+publicというのは、事実上制限がかかっていない状態
+publicなら外部から自由にアクセスできることができる
+
+⑤メンバー変数とローカル変数の違いは何ですか？
+メンバー変数：ラスのメンバーとして定義され、クラス内に直接書かれる変数のことで、フィールドと呼ばれます。
+　　　　　　フィールドはクラス内のメソッドから参照可能な変数になっている
+　　　　　　private等が付いてる
+
+ローカル変数：メソッド内で定義される変数のこと
+　　　　　　有効範囲(スコープ)としてはメソッド内だけなので、他のメソッドから別のメソッドのローカル変数にアクセスすることはできませんし、メソッドを抜けるとそのローカル変数は消滅する
+　　　　　　private等が付いてない
+
+
+⑥シングルトンとは何ですか？Javaでの実装方法について説明してください。
+
+あるクラスのインスタンスを2つ以上作成できないようにすることで、「どこからアクセスしても常に同一のインスタンスが参照される」ことを保証するデザインパターン
+
+package service;
+
+import java.util.ArrayList;
+
+import entity.Member;
+
+public class MemberServiceImpl implements MemberService {
+
+	private static MemberServiceImpl singleton = new MemberServiceImpl(); //唯一のインスタンス
+
+	private MemberServiceImpl() {}; //コンストラクタはprivate修飾子でアクセスを制限
+
+	public static MemberServiceImpl getInstance() { //唯一のインスタンスを返すgetter
+		return singleton;
+	}
+
+	@Override //アノテーション
+	public String greet(int i) {
+		String[] greetings = {"Good Morning", "Hello", "Good Evening"};
+		return greetings[i];
+	}
+
+	@Override //アノテーション
+	public ArrayList<Member> getAll() {
+		ArrayList<Member> list = new ArrayList<>();
+		Member mem1 = new Member(1, "Linda", "linda@example.com");
+		Member mem2 = new Member(2, "James", "james@example.com");
+		list.add(mem1);
+		list.add(mem2);
+		return list;
+	}
+
+	@Override
+	public int sumOf(int x, int y) {
+		int sum = 0;
+		for(int i = x; i<=y; i++) {
+			sum += i;
+		}
+		return sum;
+	}
+
+}
+
+まずは、唯一のインスタンスを保持するstaticフィールド singletonを宣言し、同時にnewでインスタンスを代入します。
+続いてコンストラクタを定義しています。ここで重要ポイントです。外部からインスタンスを生成できないようにするため、コンストラクタにprivate修飾子を指定します。
+最後に、唯一のインスタンスsingletonを返すgetter、getInstance()を定義しています。こちらは、どこからでもアクセスできるようpublicとしています。
+
+⑦シングルトンを使用する利点は何ですか？例を挙げて説明してください。
+「インスタンスを複数作成可能」という仕様がネックとなる場合があります。設計者がどのような意図を持っていたとしても、仕組み上許されている時点で使用者が複数インスタンスを作成してしまう可能性があるためです。
+
+そのような場合に用いるのが、今回利用する「シングルトン」です。
+
+シングルトンは、あえて「インスタンスを1つしか作成できない」設計にすることで、クラスの使用者に1つのインスタンスを使い回すことを強制します。
+
+
+
+⑧シングルトンを使用する際に気をつけるべき点は何ですか？説明してください。
+・シングルトンのインスタンスはnewではなく、getterで取得しなければならない
+
+・本当に１つのインスタンスでよいのか？
+シングルトンでクラスを実装する前に、本当にそのクラスのインスタンスが１つでよいのか検討する必要があります。また、その時点のみならず、将来にわたって本当に１つのインスタンスだけでよいか考える必要があります
+例えば、ロギングを行うクラスをシングルトンを利用するケースでも、アプリケーションの設計変更や使用しているライブラリの都合上、
+複数のロギングクラスのインスタンスに分けて出力する必要になった場合、一度完成したソースコードを大幅に変更することになります
+
+
+
+
