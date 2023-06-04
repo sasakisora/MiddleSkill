@@ -1,0 +1,54 @@
+⚫️DDL文
+CREATE TABLE customers (
+  customer_id INT PRIMARY KEY,
+  name VARCHAR(255),
+  email VARCHAR(255),
+  phone VARCHAR(255)
+);
+
+COMMENT ON COLUMN customers.customer_id IS '顧客ID';
+COMMENT ON COLUMN customers.name IS '顧客名';
+COMMENT ON COLUMN customers.email IS 'メールアドレス';
+COMMENT ON COLUMN customers.phone IS '電話番号';
+
+CREATE TABLE orders (
+  order_id INT PRIMARY KEY,
+  customer_id INT,
+  order_date DATE,
+  total DECIMAL(10, 2),
+  FOREIGN KEY (customer_id) REFERENCES customers (customer_id)
+);
+
+COMMENT ON COLUMN orders.order_id IS '注文ID';
+COMMENT ON COLUMN orders.customer_id IS '顧客ID';
+COMMENT ON COLUMN orders.order_date IS '注文日';
+COMMENT ON COLUMN orders.total IS '合計金額';
+
+
+CREATE TABLE order_items (
+  order_id INT,
+  product_id INT,
+  quantity INT,
+  price DECIMAL(10, 2),
+PRIMARY KEY(order_id,product_id),
+FOREIGN KEY (order_id) REFERENCES orders (order_id),
+FOREIGN KEY (product_id) REFERENCES products (product_id)
+);
+
+COMMENT ON COLUMN order_items.order_id IS '注文ID';
+COMMENT ON COLUMN order_items.product_id IS '製品ID';
+COMMENT ON COLUMN order_items.quantity IS '数量';
+COMMENT ON COLUMN order_items.price IS '価格';
+
+
+CREATE TABLE products (
+  product_id INT PRIMARY KEY,
+  name VARCHAR(255),
+  price DECIMAL(10, 2),
+  cotegory VARCHAR(255)
+);
+
+COMMENT ON COLUMN products.product_id IS '顧客ID';
+COMMENT ON COLUMN products.name IS '製品ID';
+COMMENT ON COLUMN products.price IS '価格';
+COMMENT ON COLUMN products.cotegory IS 'カテゴリ';
