@@ -10,6 +10,7 @@ COMMENT ON COLUMN customers.customer_id IS '顧客ID';
 COMMENT ON COLUMN customers.name IS '顧客名';
 COMMENT ON COLUMN customers.email IS 'メールアドレス';
 COMMENT ON COLUMN customers.phone IS '電話番号';
+COMMENT ON TABLE customers IS '顧客情報';
 
 CREATE TABLE orders (
   order_id INT PRIMARY KEY,
@@ -23,7 +24,7 @@ COMMENT ON COLUMN orders.order_id IS '注文ID';
 COMMENT ON COLUMN orders.customer_id IS '顧客ID';
 COMMENT ON COLUMN orders.order_date IS '注文日';
 COMMENT ON COLUMN orders.total IS '合計金額';
-
+COMMENT ON TABLE orders IS '注文情報';
 
 CREATE TABLE order_items (
   order_id INT,
@@ -39,7 +40,7 @@ COMMENT ON COLUMN order_items.order_id IS '注文ID';
 COMMENT ON COLUMN order_items.product_id IS '製品ID';
 COMMENT ON COLUMN order_items.quantity IS '数量';
 COMMENT ON COLUMN order_items.price IS '価格';
-
+COMMENT ON TABLE order_items IS '注文アイテム';
 
 CREATE TABLE products (
   product_id INT PRIMARY KEY,
@@ -52,3 +53,4 @@ COMMENT ON COLUMN products.product_id IS '顧客ID';
 COMMENT ON COLUMN products.name IS '製品ID';
 COMMENT ON COLUMN products.price IS '価格';
 COMMENT ON COLUMN products.cotegory IS 'カテゴリ';
+COMMENT ON TABLE products IS '製品情報';
