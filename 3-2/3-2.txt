@@ -27,7 +27,7 @@
 
 「view」→「controller」→「form」→「controller」→「sevice」→「serviceimpl」
 →「dao」→「daoimpl」→「Entity」→「DB」→「Entity」→「daoimpl」
-→「dao」→「serviceimpl」→「Entity」→「controller」→「form」→「controller」
+→「dao」→「serviceimpl」→「sevice」→「controller」→「form」→「controller」
 →「view」
 
 ⑦各コンポーネントの責務を答えなさい。（Controller）
