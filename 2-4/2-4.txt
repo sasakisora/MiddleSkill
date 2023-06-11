@@ -1,0 +1,21 @@
+2-4
+①select * from customers;
+②select * from customers where customer_id ='1';
+③select * from orders where order_date >='2022-02-01';
+④select 
+sum (a.price)
+from order_items as a left join products as b
+on a.product_id = b.product_id
+where
+b.name='エアコン' 
+;
+⑤select * from products where price between 50000 and 100000;
+⑥select cotegory, avg(price),count(cotegory)  from products group by cotegory;
+⑦select 
+DISTINCT a.name,
+a.customer_id,
+b.order_date
+from customers as a inner join orders as b on b.customer_id = a.customer_id
+where b.order_date in (select max(order_date) from orders where customer_id=b.customer_id);
+
+
