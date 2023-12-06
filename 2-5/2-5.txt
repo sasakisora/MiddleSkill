@@ -1,0 +1,21 @@
+➀
+update customers set phone='999-9999-9999' WHERE name='山田太郎';
+②
+update order_items set quantity='3', price='150000.00' WHERE order_id ='2';
+③
+UPDATE customers
+SET name = products.name
+FROM customer_id
+LEFT OUTER JOIN SCORES
+  ON customers.customer_id = products.customer_id
+  AND SCORES.TEST_DATE = '2016-04-27'
+;
+
+
+⑥
+UPDATE
+    customers
+SET
+    column = REPLACE(column, 'コ')
+WHERE
+    column like '%コ%';
